@@ -6,7 +6,7 @@ services:
     container_name: pihole
     hostname: pihole
     networks:
-      - proxy  # Coolify's default Traefik network (use 'coolify' if your setup differs)
+      - coolify  # Coolify's default Traefik network
     environment:
       TZ: Asia/Jerusalem
       WEBPASSWORD: ${WEBPASSWORD:?Set a strong password} # add to .env file for auto-populate
@@ -14,7 +14,7 @@ services:
       FTLCONF_local_ipv4: ${COOLIFY_IP:-your-ct-ip-here}  # Optional but helpful
     volumes:
       - ./pihole:/etc/pihole
-      - ./dnsmasq:/etc/dnsmasq.d
+      - ./dnsmasq.d:/etc/dnsmasq.d
     ports:
       - "53:53/tcp"
       - "53:53/udp"
@@ -25,5 +25,8 @@ services:
     restart: unless-stopped
 
 networks:
-  proxy:
+  coolify:
     external: true
+volumes:
+  pihole:
+  dnsmasq.d
