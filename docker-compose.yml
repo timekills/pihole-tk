@@ -9,7 +9,7 @@ services:
       - coolify  # Coolify's default Traefik network
     environment:
       TZ: Asia/Jerusalem
-      WEBPASSWORD: ${WEBPASSWORD} # add to .env file for auto-populate WEBPASSWORD=your_super_secret_password_here
+      WEBPASSWORD: "temporary_test_password" #${WEBPASSWORD} # add to .env file for auto-populate WEBPASSWORD=your_super_secret_password_here
       DNSMASQ_LISTENING: all
       FTLCONF_local_ipv4: ${COOLIFY_IP}  # Optional but helpful, add to .env file COOLIFY_IP=192.168.1.100
     volumes:
