@@ -11,6 +11,7 @@ services:
       WEBPASSWORD: "${WEBPASSWORD}"
       DNSMASQ_LISTENING: "all"
       FTLCONF_local_ipv4: "${COOL_IP}"
+      ServerIP: "${COOL_IP}"
     volumes:
       - "pihole:/etc/pihole"
       - "dnsmasq.d:/etc/dnsmasq.d"
