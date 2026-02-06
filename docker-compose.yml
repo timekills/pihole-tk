@@ -25,8 +25,8 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.pihole-redirect.redirectregex.regex=^http://pihole.192.168.10.226.sslip.io/$$"
-      - "traefik.http.middlewares.pihole-redirect.redirectregex.replacement=http://pihole.192.168.10.226.sslip.io/admin/"
+      - "traefik.http.middlewares.pihole-redirect.redirectregex.regex=^http://pihole.cmcc-gaza.local//$$"
+      - "traefik.http.middlewares.pihole-redirect.redirectregex.replacement=http://pihole.cmcc-gaza.local/admin/"
       - "traefik.http.routers.pihole.middlewares=pihole-redirect"
 
 networks:
