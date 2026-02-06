@@ -7,16 +7,17 @@ services:
       - coolify
     environment:
       TZ: "Asia/Jerusalem"
-      WEBPASSWORD: "temporary_test_password"
+      # This pulls from the .env file or Coolify Environment Variables tab
+      WEBPASSWORD: "${WEBPASSWORD}"
       DNSMASQ_LISTENING: "all"
-      FTLCONF_local_ipv4: 192.168.10.226
+      FTLCONF_local_ipv4: "${COOL_IP}"
     volumes:
-      - pihole:/etc/pihole
-      - dnsmasq.d:/etc/dnsmasq.d
+      - "pihole:/etc/pihole"
+      - "dnsmasq.d:/etc/dnsmasq.d"
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-     # - "8080:80/tcp"
+      # Port 80 is removed here; use Coolify FQDN settings to access the UI
     cap_add:
       - NET_ADMIN
       - NET_BIND_SERVICE
