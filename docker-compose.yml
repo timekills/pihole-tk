@@ -1,32 +1,31 @@
-version: "3.8"
-
 services:
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
     hostname: pihole
     networks:
-      - coolify  # Coolify's default Traefik network
+      - coolify
     environment:
-      TZ: Asia/Jerusalem
-      WEBPASSWORD: "temporary_test_password" #${WEBPASSWORD} # add to .env file for auto-populate WEBPASSWORD=your_super_secret_password_here
-      DNSMASQ_LISTENING: all
-      FTLCONF_local_ipv4: ${COOLIFY_IP}  # Optional but helpful, add to .env file COOLIFY_IP=192.168.1.100
+      TZ: "Asia/Jerusalem"
+      WEBPASSWORD: "temporary_test_password"
+      DNSMASQ_LISTENING: "all"
+      FTLCONF_local_ipv4: 192.168.10.226
     volumes:
-      - ./pihole:/etc/pihole
-      - ./dnsmasq.d:/etc/dnsmasq.d
+      - pihole:/etc/pihole
+      - dnsmasq.d:/etc/dnsmasq.d
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "8080:80/tcp"  # Temp for initial setup
+      - "8080:80/tcp"
     cap_add:
       - NET_ADMIN
-      - NET_BIND_SERVICE  # Helps with low-port binding
+      - NET_BIND_SERVICE
     restart: unless-stopped
 
 networks:
   coolify:
     external: true
+
 volumes:
   pihole:
-  dnsmasq.d
+  dnsmasq.d:
